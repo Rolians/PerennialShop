@@ -58,7 +58,7 @@ $(document).ready(function() {
 	 <div><%@ include file = "header.jspf"%></div>
 	<h2 align = "center">List of Products</h2>
 	<p id="demo"></p>
-	<%-- <div>
+	<div>
 		<form action="productList">
 			<table align ="center">
 				<tr>
@@ -84,7 +84,7 @@ $(document).ready(function() {
 				</tr>
 			</table>
 		</form>
-	</div> --%>
+	</div>
 	<div>
 	<form:form>
 		
