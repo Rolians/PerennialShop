@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	 xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/mvc 
+        http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd
+        http://www.springframework.org/schema/context 
+        http://www.springframework.org/schema/context/spring-context.xsd">
+        
+   <context:annotation-config/>
+    <context:component-scan base-package="com.uni"></context:component-scan>
+    
+    <bean class = "org.springframework.web.servlet.view.InternalResourceViewResolver">
+    	<property name="prefix" value="WEB-INF/jsp/"/>
+    	<property name="suffix" value=".jsp"/>
+    </bean>
+    
+    <mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/*"/>
+			<bean class="com.uni.interceptor.AuthInterceptor"></bean>
+		</mvc:interceptor>
+	</mvc:interceptors>
+    
+    <bean id="dataSource" class="org.apache.tomcat.dbcp.dbcp2.BasicDataSource"
+		destroy-method="close">
+        <property name="driverClassName" value="com.mysql.jdbc.Driver" />
+        <property name="url" value="jdbc:mysql://localhost:3306/dbtemp" />
+        <property name="username" value="root" />
+        <property name="password" value="" />
+       	<property name="initialSize" value="20" />
+       	<property name="minIdle" value="0"></property>
+		<property name="maxIdle" value="18"></property>
+		<property name="validationQuery" value="SELECT 1"></property>
+    </bean>	
+      
+    <bean id = "bcrypt" class = "org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"></bean>
+    <bean id = "dao" class = "com.uni.dao.CustomerDao"></bean>
+    <bean id = "pdo" class = "com.uni.dao.ProductDao"></bean>
+    <bean id = "userDao" class = "com.uni.dao.UserDao"></bean>
+    
+    <bean id = "userservice" class = "com.uni.service.UserService"></bean>
+    <bean id = "service" class = "com.uni.service.CustomerService"></bean>
+    <bean id = "ps" class = "com.uni.service.ProductService"></bean>
+</beans>
