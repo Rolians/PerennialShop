@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.uni.model.*;
 import com.uni.dao.ProductDao;;
 
-
+@Service
 public class ProductService
 {
 	@Autowired
